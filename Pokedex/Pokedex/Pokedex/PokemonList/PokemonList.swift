@@ -11,7 +11,26 @@ struct PokemonList: View {
     @ObservedObject var viewModel: PokemonListViewModel
     
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(viewModel.pokemons) { pokemon in
+                HStack {
+                    Text("#\(pokemon.id ?? 0)")
+                        .font(Font.system(size: 20))
+                        .foregroundColor(Color.black)
+                    
+                    Text(pokemon.name ?? "")
+                        .font(Font.system(size: 20))
+                        .foregroundColor(Color.black)
+                        .onAppear {
+                            if pokemon.name == viewModel.pokemons.last?.name {
+                                viewModel.shouldLoadMore = true
+                            }
+                        }
+                }
+                .padding(.vertical, 10)
+            }
+        }
+        .listStyle(.plain)
     }
 }
 

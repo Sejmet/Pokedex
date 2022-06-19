@@ -11,7 +11,7 @@ public enum Endpoints {
     case pokemon(PokemonParam)
     case ability(AbilityParam)
     case move(MoveParam)
-    case allPokemons
+    case allPokemons(PokemonListParam)
     case allAbility
     case allMoves
 }
@@ -23,8 +23,8 @@ public extension Endpoints {
             return PokeAPI.pokemon(param)
         case .ability(let param):
             return PokeAPI.ability(param)
-        case .allPokemons:
-            return PokeAPI.allPokemons
+        case .allPokemons(let param):
+            return PokeAPI.allPokemons(param)
         case .allAbility:
             return PokeAPI.allAbility
         case .move(let param):

@@ -13,7 +13,7 @@ enum PokeAPI: URLRequestBuilder {
     case ability(AbilityParam)
     case move(MoveParam)
     case allAbility
-    case allPokemons
+    case allPokemons(PokemonListParam)
     case allMoves
 }
 
@@ -49,7 +49,9 @@ extension Encodable {
 extension PokeAPI {
     var parameters: Parameters? {
         switch self {
-        case .pokemon, .ability, .allAbility, .allPokemons, .allMoves, .move:
+        case .allPokemons(let param):
+            return ["limit": 40, "offset": param.offset]
+        case .pokemon, .ability, .allAbility , .allMoves, .move:
             return nil
         }
     }

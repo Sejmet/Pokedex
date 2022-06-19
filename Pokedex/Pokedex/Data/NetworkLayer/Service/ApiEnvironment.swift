@@ -19,9 +19,9 @@ extension ApiEnvironment {
     var baseApiUrl: URL {
         switch self {
         case .development:
-            return URL(string: "http://v1-api.apricot.delivery/")!
+            return URL(string: "https://pokeapi.co/api/v2/")!
         case .production:
-            return URL(string: "http://v1-api.apricot.delivery/")!
+            return URL(string: "https://pokeapi.co/api/v2/")!
         }
     }
 }

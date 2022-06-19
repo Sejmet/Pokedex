@@ -7,9 +7,8 @@
 
 import SwiftUI
 
-@available(iOS 14.0, *)
+@main
 struct PokedexApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     var body: some Scene {
         WindowGroup {
             AppCoordinator()

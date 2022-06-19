@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Pokemon: Codable {
+struct Pokemon: Codable, Identifiable {
     var id: Int?
     var name: String?
     var order: Int?
@@ -47,4 +47,11 @@ struct Sprite: Codable {
         case frontShiny = "front_shiny"
         case frontShinyFemale = "front_shiny_female"
     }
+}
+
+struct PokemonResponse: Codable {
+    var count: Int?
+    var next: String?
+    var previous: String?
+    var results: [Pokemon]?
 }
