@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct Stat: Codable {
+struct Stat: Codable, Identifiable {
+    let id: UUID = UUID()
     var baseStat: Int?
     var effort: Int?
     var info: Information?
