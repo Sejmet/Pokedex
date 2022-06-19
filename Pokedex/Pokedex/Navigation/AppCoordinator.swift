@@ -16,6 +16,8 @@ struct AppCoordinator: View {
             switch screen {
             case .pokemonsList(let vm):
                 PokemonList(viewModel: vm)
+            case .pokemonDetail(let vm):
+                PokemonDetailView(viewModel: vm)
             }
         }
     }

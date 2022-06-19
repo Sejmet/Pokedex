@@ -13,8 +13,16 @@ class AppCoordinatorViewModel: ObservableObject {
     @Published var routes: Routes<Screen> = []
     
     init() {
-        routes = [.root(.pokemonsList(.init()), embedInNavigationView: true)]
-        
+        let vm = PokemonListViewModel()
+        vm.pokemonDetail = { pokeId in
+            self.goToDetail(pokeId: pokeId)
+        }
+        routes = [.root(.pokemonsList(vm), embedInNavigationView: true)]
+    }
+    
+    private func goToDetail(pokeId: Int) {
+        let vm = PokemonDetailViewModel(pokeId: pokeId, goBack: goBack)
+        routes.push(.pokemonDetail(vm))
     }
     
     private func dismiss() {

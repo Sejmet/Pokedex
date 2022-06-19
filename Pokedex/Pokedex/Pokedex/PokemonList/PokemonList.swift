@@ -11,26 +11,26 @@ struct PokemonList: View {
     @ObservedObject var viewModel: PokemonListViewModel
     
     var body: some View {
-        List {
-            ForEach(viewModel.pokemons) { pokemon in
-                HStack {
-                    Text("#\(pokemon.id ?? 0)")
-                        .font(Font.system(size: 20))
-                        .foregroundColor(Color.black)
-                    
-                    Text(pokemon.name ?? "")
-                        .font(Font.system(size: 20))
-                        .foregroundColor(Color.black)
-                        .onAppear {
-                            if pokemon.name == viewModel.pokemons.last?.name {
-                                viewModel.shouldLoadMore = true
-                            }
-                        }
+        ZStack {
+            List {
+                ForEach(viewModel.pokemons) { pokemon in
+                    Button(action: {
+                        viewModel.goToDetail(pokeId: pokemon.id ?? 0)
+                    }) {
+                        getPokemonCell(pokemon: pokemon)
+                    }
                 }
-                .padding(.vertical, 10)
             }
+            .listStyle(.plain)
+            
+            ProgressView()
+                .opacity(viewModel.isLoading ? 1 : 0)
         }
-        .listStyle(.plain)
+        .navigationBar(navBarTitle: "Pokedex")
+    }
+    
+    func getPokemonCell(pokemon: Pokemon) -> PokemonView {
+        return PokemonView(pokemon: pokemon)
     }
 }
 

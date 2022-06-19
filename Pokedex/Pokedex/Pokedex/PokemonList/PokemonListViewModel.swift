@@ -17,6 +17,8 @@ class PokemonListViewModel: ObservableObject {
     @Published var error: Error?
     @Published var pokemons: [Pokemon] = []
     
+    var pokemonDetail: ((Int) -> Void)?
+    
     init() {
         $shouldLoadMore
             .sink { [weak self] loadMore in
@@ -30,7 +32,7 @@ class PokemonListViewModel: ObservableObject {
         loadPokemons()
     }
     
-    func loadPokemons() {
+    private func loadPokemons() {
         isLoading = true
         let param = PokemonListParam(offset: pokemons.count)
         pokemonListUseCase.call(param)
@@ -51,4 +53,7 @@ class PokemonListViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    func goToDetail(pokeId: Int) {
+        pokemonDetail?(pokeId)
+    }
 }

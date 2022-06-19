@@ -9,5 +9,5 @@ import Foundation
 
 enum Screen {
     case pokemonsList(PokemonListViewModel)
-
+    case pokemonDetail(PokemonDetailViewModel)
 }
