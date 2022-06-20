@@ -99,17 +99,18 @@ public struct Logger {
     }
 
     #else
-    public static func error(_ message: String, code: ApricotErrorCode, icon: String = "", from file: String = "", at function: String = "") {
-        let userInfo = [
-            NSLocalizedDescriptionKey: "ApricotError",
-            "message": message,
-            "platform": "iOS"
-        ] as [String : Any]
-        
-        let e = NSError.init(domain: NSCocoaErrorDomain,
-                             code: code.rawValue,
-                                 userInfo: userInfo)
-        Crashlytics.crashlytics().record(error: e)
+    public static func error(_ message: String, code: PokedexErrorCode, icon: String = "", from file: String = "", at function: String = "") {
+        // example
+//        let userInfo = [
+//            NSLocalizedDescriptionKey: "Error",
+//            "message": message,
+//            "platform": "iOS"
+//        ] as [String : Any]
+//
+//        let e = NSError.init(domain: NSCocoaErrorDomain,
+//                             code: code.rawValue,
+//                                 userInfo: userInfo)
+//        Crashlytics.crashlytics().record(error: e)
     }
     
     public static func trace(_ message: String, icon: String = "", from file: String = "", at function: String = "") {

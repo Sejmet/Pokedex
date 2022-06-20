@@ -9,4 +9,6 @@ import Foundation
 
 public enum PokedexErrorCode: Int {
     case genericError
+    // case getDetailError
+    // case postImageError
 }
